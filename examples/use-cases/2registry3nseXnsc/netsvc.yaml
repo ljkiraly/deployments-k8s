@@ -1,0 +1,7 @@
+---
+apiVersion: networkservicemesh.io/v1
+kind: NetworkService
+metadata:
+  name: 2registry3nsexnscv4
+spec:
+  payload: ETHERNET
