@@ -8,4 +8,10 @@ updates:
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
-      interval: "daily"
+      interval: "weekly"
+    groups:
+      gh-actions-minor:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
