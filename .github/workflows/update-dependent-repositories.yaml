@@ -50,19 +50,19 @@ jobs:
         with:
           sha: ${{ steps.get-pr-hash.outputs.hash }}
           github-token: ${{ github.token }}
-      - name: Checkout networkservicemesh/${{ matrix.repository }}
+      - name: Checkout ljkiraly/${{ matrix.repository }}
         uses: actions/checkout@v4
         with:
-          path: ${{ github.workspace }}/src/github.com/networkservicemesh/${{ matrix.repository }}
-          repository: networkservicemesh/${{ matrix.repository }}
+          path: ${{ github.workspace }}/src/github.com/ljkiraly/${{ matrix.repository }}
+          repository: ljkiraly/${{ matrix.repository }}
           token: ${{ secrets.NSM_BOT_GITHUB_TOKEN }}
       - name: Update ${{ matrix.repository }} locally
-        working-directory: ${{ github.workspace }}/src/github.com/networkservicemesh/${{ matrix.repository }}
+        working-directory: ${{ github.workspace }}/src/github.com/ljkiraly/${{ matrix.repository }}
         run: |
           go generate
           go mod tidy
       - name: Push update to the ${{ matrix.repository }}
-        working-directory: ${{ github.workspace }}/src/github.com/networkservicemesh/${{ matrix.repository }}
+        working-directory: ${{ github.workspace }}/src/github.com/ljkiraly/${{ matrix.repository }}
         run: |
           sed -r -i 's/sha = "[a-z0-9]*"/sha = "${{ github.sha }}"/g' extensions/base/suite.gen.go
           echo Starting to update repositotry ${{ matrix.repository }}
